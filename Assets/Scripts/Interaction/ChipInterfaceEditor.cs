@@ -1,14 +1,15 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 // Allows player to add/remove/move/rename inputs or outputs of a chip.
 public class ChipInterfaceEditor : InteractionHandler {
-
 	const int maxGroupSize = 8;
 
-	public event System.Action<Chip> onDeleteChip;
-	public event System.Action onChipsAddedOrDeleted;
+	public event Action<Chip> onDeleteChip;
+	public event Action onChipsAddedOrDeleted;
 
 	public enum EditorType { Input, Output }
 	public enum HandleState { Default, Highlighted, Selected }
@@ -22,9 +23,9 @@ public class ChipInterfaceEditor : InteractionHandler {
 	public Transform chipContainer;
 	public ChipSignal signalPrefab;
 	public RectTransform propertiesUI;
-	public TMPro.TMP_InputField nameField;
-	public UnityEngine.UI.Button deleteButton;
-	public UnityEngine.UI.Toggle twosComplementToggle;
+	public TMP_InputField nameField;
+	public Button deleteButton;
+	public Toggle twosComplementToggle;
 	public Transform signalHolder;
 
 	[Header ("Appearance")]
