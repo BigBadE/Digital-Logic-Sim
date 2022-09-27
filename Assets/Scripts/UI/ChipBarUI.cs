@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UI;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class ChipBarUI : MonoBehaviour {
@@ -14,7 +16,8 @@ public class ChipBarUI : MonoBehaviour {
 	Manager manager;
 	public List<string> hideList;
 	public Scrollbar horizontalScroll;
-
+	public GameObject popupMenu;
+	
 	void Awake () {
 		manager = FindObjectOfType<Manager> ();
 		manager.customChipCreated += AddChipButton;
@@ -36,7 +39,6 @@ public class ChipBarUI : MonoBehaviour {
 
 	void AddChipButton (Chip chip) {
 		if (hideList.Contains (chip.chipName)) {
-			//Debug.Log("Hiding")
 			return;
 		}
 		CustomButton button = Instantiate (buttonPrefab);
@@ -56,7 +58,18 @@ public class ChipBarUI : MonoBehaviour {
 
 		// Set button event
 		//button.onClick.AddListener (() => manager.SpawnChip (chip));
-		button.onPointerDown += (() => manager.SpawnChip (chip));
+		button.onPointerDown += eventData =>
+		{
+			if (eventData.button == PointerEventData.InputButton.Right)
+			{
+				popupMenu.SetActive(true);
+				popupMenu.GetComponentInChildren<RectTransform>().position = chip.transform.position;
+			}
+			else if (eventData.button == PointerEventData.InputButton.Left)
+			{
+				manager.SpawnChip(chip);
+			}
+		};
 	}
 
 }
