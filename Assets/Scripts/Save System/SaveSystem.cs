@@ -22,7 +22,6 @@ public static class SaveSystem {
 		string[] chipSavePaths = Directory.GetFiles (CurrentSaveProfileDirectoryPath, "*" + fileExtension);
 		ChipLoader.LoadAllChips (chipSavePaths, manager);
 		Debug.Log ("Load time: " + sw.ElapsedMilliseconds);
-
 	}
 
 	public static string GetPathToSaveFile (string saveFileName) {
@@ -33,17 +32,9 @@ public static class SaveSystem {
 		return Path.Combine (CurrentSaveProfileWireLayoutDirectoryPath, saveFileName + fileExtension);
 	}
 
-	static string CurrentSaveProfileDirectoryPath {
-		get {
-			return Path.Combine (SaveDataDirectoryPath, activeProjectName);
-		}
-	}
+	static string CurrentSaveProfileDirectoryPath => Path.Combine (SaveDataDirectoryPath, activeProjectName);
 
-	static string CurrentSaveProfileWireLayoutDirectoryPath {
-		get {
-			return Path.Combine (CurrentSaveProfileDirectoryPath, "WireLayout");
-		}
-	}
+	static string CurrentSaveProfileWireLayoutDirectoryPath => Path.Combine (CurrentSaveProfileDirectoryPath, "WireLayout");
 
 	public static string[] GetSaveNames () {
 		string[] savedProjectPaths = new string[0];

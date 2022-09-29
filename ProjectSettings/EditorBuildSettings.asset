@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Chip Design.unity
     guid: 4a2668c0fd8aa460391ad9a3abfe710e
+  - enabled: 1
+    path: Assets/Scenes/Campaign.unity
+    guid: 36e7b002c0866c14699c6e216221a8c3
   m_configObjects: {}
